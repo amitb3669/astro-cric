@@ -1,51 +1,120 @@
-<?php
+<!DOCTYPE html>
+<html lang="en">
 
-$allowed_domain = "https://amitb3669.github.io/astro-cric/index.html";
+<head>
+    <script src="https://ssl.p.jwpcdn.com/player/v/8.32.1/jwplayer.js" type="text/javascript"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: black;
+        }
 
+        #player-container {
+            width: 100%;
+            max-width: 800px;
+            aspect-ratio: 16 / 9;
+            margin: 10px 0;
+        }
 
-    header("Access-Control-Allow-Origin: $allowed_domain");
+        /* Custom scrollbar styles */
+        body::-webkit-scrollbar {
+            width: 8px;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
 
+        body::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            background-color: rgba(140, 140, 140, 0.5);
+        }
 
-// Get the request URI and extract the mpd link
-$requestUri = $_SERVER['REQUEST_URI'];
-$basePath = '/asto.php/';
-$mpdLink = str_replace($basePath, '', $requestUri);
+        body::-webkit-scrollbar-thumb:hover {
+            background-color: rgba(140, 140, 140, 0.7);
+        }
 
-// Ensure the mpd link is valid
-if (empty($mpdLink)) {
-    echo "Error: No MPD link provided.";
-    exit;
-}
+        .ad-container {
+            margin: 10px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<script type='text/javascript' src='//eltontry.com/09/f1/e9/09f1e956c711aea6a898d5abbb78d092.js'></script>
 
-// Construct the full MPD URL
-$mpdUrl = urldecode($mpdLink); // Decode the URL in case it's encoded
-$mpdUrl= "https://dds.livecricketsl.xyz/proxy/sg.php/$mpdUrl";
+<body>
+    <div class="ad-container">
+        <script type="text/javascript">
+            atOptions = {
+                'key': '701fef7de243c4e8e91e6e6b3a2fea1e',
+                'format': 'iframe',
+                'height': 90,
+                'width': 728,
+                'params': {}
+            };
+        </script>
+        <script type="text/javascript" src="//eltontry.com/701fef7de243c4e8e91e6e6b3a2fea1e/invoke.js"></script>
+    </div>
 
-// Initialize a cURL session to fetch the MPD link
+    <div id="player-container"></div>
 
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $mpdUrl);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    <div class="ad-container">
+        <script type="text/javascript">
+            atOptions = {
+                'key': '701fef7de243c4e8e91e6e6b3a2fea1e',
+                'format': 'iframe',
+                'height': 90,
+                'width': 728,
+                'params': {}
+            };
+        </script>
+        <script type="text/javascript" src="//eltontry.com/701fef7de243c4e8e91e6e6b3a2fea1e/invoke.js"></script>
+    </div>
 
-    'Origin: https://livecricketsl.kesug.com'
-]);
+    <script type="text/javascript">
+        jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo';
+        jwplayer("player-container").setup({
+            file: "https://amitb3669.github.io/astro-cric/asto.php/https://linearjitp-playback.astro.com.my/dash-wv/linear/2504/default_primary.mpd",
+            aspectratio: '16:9',
+            width: '100%',
+            autostart: true,
+            image: 'https://mma.prnewswire.com/media/1919551/WillowTV_Logo.jpg?p=facebook',
+            mute: false,
+            preload: 'auto',
+            captions: { color: 'white', fontSize: '16px', backgroundOpacity: 0 },
+            sharing: {
+                sites: ['facebook', 'twitter']
+            },
+            drm: {
+                "clearkey": {
+                    "keyId": "03c2e0af2f8159f9f0ce9b5dbc865f10",
+                    "key": "cd84ed136b0cc71f8ab8cd4d4f6a2e4c"
+                }
+            }
+        });
 
-// Execute the cURL request
-$response = curl_exec($ch);
+        // Ensure playback compatibility for mobile devices
+        jwplayer().on('ready', function () {
+            const player = document.querySelector('#player-container');
+            if (player) {
+                player.style.height = window.innerHeight + 'px';
+            }
+        });
 
-// Check for cURL errors
-if (curl_errno($ch)) {
-    echo "cURL Error: " . curl_error($ch);
-    curl_close($ch);
-    exit;
-}
+        jwplayer().on('play', function () {
+            document.body.style.backgroundColor = "#000";
+        });
 
-// Close the cURL session
-curl_close($ch);
+        jwplayer().on('error', function (e) {
+            console.error("Playback error:", e.message);
+        });
+    </script>
+</body>
 
-// Return the response
-//header('Content-Type: application/xml'); // Assuming the MPD response is XML
-echo $response;
-
-?>
+</html>
