@@ -1,6 +1,6 @@
 <?php
 
-$allowed_domain = "https://astro-cric-worldwide.vercel.app/";
+$allowed_domain = "https://amitb3669.github.io/astro-cric/play/web.php";
 
 
     header("Access-Control-Allow-Origin: $allowed_domain");
